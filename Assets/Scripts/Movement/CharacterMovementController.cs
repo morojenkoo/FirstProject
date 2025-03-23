@@ -4,6 +4,8 @@ namespace FirstProject.Movement
 	[RequireComponent(typeof(CharacterController))]
 	public class CharacterMovementController : MonoBehaviour
 	{
+		private const int acceleration = 2; //Значение ускорения в n раз
+		public bool IsBoosting;
 		private static readonly float SqrEpsilon = Mathf.Epsilon * Mathf.Epsilon; 
 		private CharacterController _characterController;
 		[SerializeField]
@@ -22,6 +24,17 @@ namespace FirstProject.Movement
 
 			if (_maxRadians > 0f && LookDirection != Vector3.zero)
 				Rotate();
+			if (Input.GetKeyDown(KeyCode.Space)) //Если пробел нажат - ускоряемся
+			{
+				IsBoosting = true;
+				SpeedUp(IsBoosting);
+			}
+
+			if (Input.GetKeyUp(KeyCode.Space)) //Если отпустили - возвращаем изначальную скорость
+			{
+				IsBoosting = false;
+				SpeedUp(IsBoosting);
+			}
 		}
 		private void Translate()
 		{
@@ -38,6 +51,14 @@ namespace FirstProject.Movement
 					_maxRadians * Time.deltaTime);
 				transform.rotation = newRotation;
 			}
+		}
+
+		private void SpeedUp(bool isBoosting) //функция для ускорения
+		{
+			if (isBoosting)
+				_speed *= acceleration;
+			else 
+				_speed /= acceleration;
 		}
 	}
 }

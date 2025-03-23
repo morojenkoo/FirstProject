@@ -34,8 +34,10 @@ namespace FirstProject.Shooting
             GameObject target = null;
             var position = _weapon.transform.position;
             var radius = _weapon.ShootRadius;
-            var mask = LayerUtils.EnemyMask;
-            var size = Physics.OverlapSphereNonAlloc(position, radius, _colliders, mask);
+            var EnemyMask = LayerUtils.EnemyMask;
+            var PlayerMask = LayerUtils.PlayerMask;
+            var combinedMask = LayerUtils.EnemyMask | LayerUtils.PlayerMask; //побитовое или для объединения масок
+            var size = Physics.OverlapSphereNonAlloc(position, radius, _colliders, combinedMask); //в функцию передаём объединённую маску
             if (size > 0)
             {
                 for (int i = 0; i < size; i++)

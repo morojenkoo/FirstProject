@@ -8,6 +8,7 @@ namespace FirstProject
         public const string PlayerLayerName = "Player";
         public static readonly int BulletLayer = LayerMask.NameToLayer(BulletLayerName);
         public static readonly int EnemyMask = LayerMask.GetMask(EnemyLayerName);
+        public static readonly int PlayerMask = LayerMask.GetMask(PlayerLayerName);
         public static bool IsBullet(GameObject other) => other.layer == BulletLayer;
     }
 }
