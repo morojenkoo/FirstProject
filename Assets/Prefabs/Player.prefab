@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6032920432740707245}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 5049062912694966015}
   - component: {fileID: 4188836274122245137}
   - component: {fileID: 1546236792314234324}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 4828407254602456912}
   - component: {fileID: 7880797814112087933}
   - component: {fileID: 6667747221424310555}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,6 +224,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _baseWeaponPrefab: {fileID: 1204885222005326228, guid: c355507fa2cb2ab49b10db01b95efce6, type: 3}
   _hand: {fileID: 6032920432740707245}
+  _health: 100
 --- !u!114 &2712345878003021240
 MonoBehaviour:
   m_ObjectHideFlags: 0

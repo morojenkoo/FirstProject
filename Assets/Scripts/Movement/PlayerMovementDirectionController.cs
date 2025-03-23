@@ -17,7 +17,7 @@ namespace FirstProject.Movement
 			var direction = new Vector3(horizontal, 0, vertical);
 			direction = _camera.transform.rotation * direction;
 			direction.y = 0;
-            MovementDirection = direction;
+            MovementDirection = direction.normalized;
         }
 	}
 }

@@ -9,6 +9,8 @@ namespace FirstProject {
         private Weapon _baseWeaponPrefab;
         [SerializeField]
         private Transform _hand;
+        [SerializeField]
+        private float _health = 2f;
         private IMovementDirectionSource _movementDirectionSource;
         private CharacterMovementController _characterMovementController;
         private ShootingController _shootingController;
@@ -26,7 +28,25 @@ namespace FirstProject {
         protected void Update()
         {
             var direction = _movementDirectionSource.MovementDirection;
-            _characterMovementController.Direction = direction;
+            var lookDirection = direction;
+            if (_shootingController.HasTarget)
+            {
+                lookDirection = (_shootingController.TargetPosition - transform.position).normalized;
+            }
+            _characterMovementController.MovementDirection = direction;
+            _characterMovementController.LookDirection = lookDirection;
+            if (_health <= 0f)
+                Destroy(gameObject);
+        }
+
+        protected void OnTriggerEnter(Collider other)
+        {
+            if (LayerUtils.IsBullet(other.gameObject))
+            {
+                var bullet = other.GetComponent<Bullet>();
+                _health -= bullet.Damage;
+                Destroy(other.gameObject);
+            }
         }
     }
 }
