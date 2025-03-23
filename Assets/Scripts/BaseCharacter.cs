@@ -3,7 +3,7 @@ using FirstProject.Shooting;
 using UnityEngine;
 namespace FirstProject {
     [RequireComponent(typeof(CharacterMovementController), typeof(ShootingController))]
-    public class PlayerCharacter : MonoBehaviour
+    public class BaseCharacter : MonoBehaviour
     {
         [SerializeField]
         private Weapon _baseWeaponPrefab;
