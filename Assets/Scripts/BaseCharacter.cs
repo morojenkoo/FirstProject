@@ -1,9 +1,10 @@
 using FirstProject.Movement;
+using FirstProject.PickUp;
 using FirstProject.Shooting;
 using UnityEngine;
 namespace FirstProject {
     [RequireComponent(typeof(CharacterMovementController), typeof(ShootingController))]
-    public class BaseCharacter : MonoBehaviour
+    public abstract class BaseCharacter : MonoBehaviour
     {
         [SerializeField]
         private Weapon _baseWeaponPrefab;
@@ -12,7 +13,7 @@ namespace FirstProject {
         [SerializeField]
         private float _health = 2f;
         private IMovementDirectionSource _movementDirectionSource;
-        private CharacterMovementController _characterMovementController;
+        protected CharacterMovementController _characterMovementController;
         private ShootingController _shootingController;
         protected void Awake()
         {
@@ -23,9 +24,9 @@ namespace FirstProject {
 
         protected void Start()
         {
-            _shootingController.SetWeapon(_baseWeaponPrefab, _hand);
+            SetWeapon(_baseWeaponPrefab);
         }
-        protected void Update()
+        protected virtual void Update()
         {
             var direction = _movementDirectionSource.MovementDirection;
             var lookDirection = direction;
@@ -46,7 +47,17 @@ namespace FirstProject {
                 var bullet = other.GetComponent<Bullet>();
                 _health -= bullet.Damage;
                 Destroy(other.gameObject);
+            } else if (LayerUtils.IsPickUp(other.gameObject))
+            {
+                var pickUp = other.GetComponent<PickUpWeapon>();
+                pickUp.PickUp(this);
+                Destroy(other.gameObject);
             }
+        }
+
+        public void SetWeapon(Weapon weapon)
+        {
+            _shootingController.SetWeapon(weapon, _hand);
         }
     }
 }
