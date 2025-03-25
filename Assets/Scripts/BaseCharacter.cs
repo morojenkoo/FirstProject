@@ -13,7 +13,7 @@ namespace FirstProject {
         [SerializeField]
         private float _health = 2f;
         private IMovementDirectionSource _movementDirectionSource;
-        protected CharacterMovementController _characterMovementController;
+        public CharacterMovementController _characterMovementController;
         private ShootingController _shootingController;
         protected void Awake()
         {
@@ -49,7 +49,7 @@ namespace FirstProject {
                 Destroy(other.gameObject);
             } else if (LayerUtils.IsPickUp(other.gameObject))
             {
-                var pickUp = other.GetComponent<PickUpWeapon>();
+                var pickUp = other.GetComponent<PickUpItem>();
                 pickUp.PickUp(this);
                 Destroy(other.gameObject);
             }

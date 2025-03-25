@@ -11,18 +11,24 @@ namespace FirstProject.PickUp
         private float _range = 2f;
         [SerializeField]
         private int _maxCount;
-        [SerializeField]
-        private float _spawnIntervalSeconds = 10f;
+        private static float _minSpawnIntervalSeconds = 5f;
+        private static float _maxSpawnIntervalSeconds = 10f;
         private float _currentSpawnTimerSeconds;
         private int _currentCount;
+        private float randomTimerSeconds;
 
+        private void Awake()
+        {
+            randomTimerSeconds = Random.Range(_minSpawnIntervalSeconds, _maxSpawnIntervalSeconds);
+        }
         protected void Update()
         {
             if (_currentCount < _maxCount)
             {
                 _currentSpawnTimerSeconds += Time.deltaTime;
-                if (_currentSpawnTimerSeconds > _spawnIntervalSeconds)
+                if (_currentSpawnTimerSeconds > randomTimerSeconds)
                 {
+                    randomTimerSeconds = Random.Range(_minSpawnIntervalSeconds, _maxSpawnIntervalSeconds);
                     _currentSpawnTimerSeconds = 0f;
                     _currentCount++;
                     var randomPointInsideRange = Random.insideUnitCircle * _range;
