@@ -1,7 +1,7 @@
-using FirstProject.Movement;
+using FirstProject.Enemy;
 using UnityEngine;
 namespace FirstProject {
-    [RequireComponent(typeof(DummyDirectionController))]
+    [RequireComponent(typeof(EnemyDirectionController), typeof(EnemyAIController))]
     public class EnemyCharacter : BaseCharacter
     {
         
