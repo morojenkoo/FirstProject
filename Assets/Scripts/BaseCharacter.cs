@@ -56,7 +56,7 @@ namespace FirstProject {
                 Destroy(other.gameObject);
             }
         }
-
+        
         public float GetHealth()
         {
             return _health;

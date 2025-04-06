@@ -11,10 +11,7 @@ namespace FirstProject.PickUp
         public override void PickUp(BaseCharacter character)
         {
             base.PickUp(character);
-            if (character is PlayerCharacter player)
-                player.ActivateTemporarySpeedBoost(_acceleration, _duration);
-            else
-                character._characterMovementController.CurrentSpeed *= _acceleration;
+            character._characterMovementController.ActivateTemporarySpeedBoost(_acceleration, _duration);
         }
     }
 }

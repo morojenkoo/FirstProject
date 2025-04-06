@@ -8,6 +8,7 @@ namespace FirstProject.Enemy
         private float _viewRadius = 20f;
         private EnemyTarget _target;
         private EnemyStateMachine _stateMachine;
+        [SerializeField]
         private EnemyCharacter _character;
         protected void Awake()
         {

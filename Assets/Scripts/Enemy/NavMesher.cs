@@ -10,8 +10,8 @@ namespace FirstProject
         private NavMeshHit _targetHit;
         private NavMeshPath _navMeshPath;
         private int _currentPathPointIndex;
-        private const float DistanceEpsilon = 1.5f;
-        public bool IsPathCalculated { get; private set; }
+        public float DistanceEpsilon = 1.5f;
+        public bool IsPathCalculated { get; set; }
     
         public NavMesher(Transform agentTransform)
         {

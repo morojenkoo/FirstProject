@@ -5,9 +5,6 @@ namespace FirstProject {
     [RequireComponent(typeof(EnemyDirectionController), typeof(EnemyAIController))]
     public class EnemyCharacter : BaseCharacter
     {
-        public void RunAway(RunAwayState state)
-        {
-            
-        }
+
     }
 }
