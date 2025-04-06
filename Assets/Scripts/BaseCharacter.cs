@@ -1,6 +1,7 @@
 using FirstProject.Movement;
 using FirstProject.PickUp;
 using FirstProject.Shooting;
+
 using UnityEngine;
 namespace FirstProject {
     [RequireComponent(typeof(CharacterMovementController), typeof(ShootingController))]
@@ -11,7 +12,8 @@ namespace FirstProject {
         [SerializeField]
         private Transform _hand;
         [SerializeField]
-        private float _health = 2f;
+        private float _health = 100f;
+        [SerializeField] private float _runAwayHealth = 30f;
         private IMovementDirectionSource _movementDirectionSource;
         public CharacterMovementController _characterMovementController;
         private ShootingController _shootingController;
@@ -55,6 +57,14 @@ namespace FirstProject {
             }
         }
 
+        public float GetHealth()
+        {
+            return _health;
+        }
+        public float GetRunAwayHealth()
+        {
+            return _runAwayHealth;
+        }
         public void SetWeapon(Weapon weapon)
         {
             _shootingController.SetWeapon(weapon, _hand);
