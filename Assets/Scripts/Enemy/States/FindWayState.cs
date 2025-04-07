@@ -1,6 +1,5 @@
 ﻿using FirstProject.FSM;
 using UnityEngine;
-
 namespace FirstProject.States
 {
     public class FindWayState : BaseState
@@ -16,8 +15,7 @@ namespace FirstProject.States
             _navMesher = navMesher;
             _enemyDirectionController = enemyDirectionController;
         }
-
-    public override void Execute()
+        public override void Execute()
         {
             Vector3 targetPosition = _target.Closest.transform.position;
             if (!_navMesher.IsPathCalculated || _navMesher.DistanceToTargetPointFrom(targetPosition) > MaxDistance)
@@ -25,10 +23,9 @@ namespace FirstProject.States
             var currentPoint = _navMesher.GetCurrentPoint();
             if (_currentPoint != currentPoint)
             {
-                _currentPoint = currentPoint;
+                _currentPoint = currentPoint; 
                 _enemyDirectionController.UpdateMovementDirection(currentPoint);
             }
-                
         }
     }
 }

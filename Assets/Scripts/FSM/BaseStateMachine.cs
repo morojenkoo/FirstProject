@@ -41,12 +41,16 @@ namespace FirstProject.FSM
             {
                 if (transition.Condition())
                 {
-                    Debug.Log($"State {_currentState.GetType()} is transitioning to {transition.ToState.GetType()}");
                     _currentState = transition.ToState;
                     break;
                 }
             }
             _currentState.Execute();
+        }
+
+        public BaseState GetCurrentState()
+        {
+            return _currentState;
         }
     }
 }

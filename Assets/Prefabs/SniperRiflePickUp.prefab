@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4764fbdc448d4b53ab77e377db7d250f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weaponPrefab: {fileID: 6958037002435089774, guid: 784ad0e9e9d27a34096d52347c568de5, type: 3}
+  _weaponPrefab: {fileID: 2506118373304136574, guid: 784ad0e9e9d27a34096d52347c568de5, type: 3}
 --- !u!65 &4698011882846573367
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -76,6 +76,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4656209556627178133}
     m_Modifications:
+    - target: {fileID: 2506118373304136574, guid: 784ad0e9e9d27a34096d52347c568de5, type: 3}
+      propertyPath: _bulletSpawnPosition
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4211036690609275262, guid: 784ad0e9e9d27a34096d52347c568de5, type: 3}
       propertyPath: m_Name
       value: SniperRifle

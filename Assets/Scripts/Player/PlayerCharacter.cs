@@ -15,12 +15,12 @@ namespace FirstProject
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 _characterMovementController._isSpaceBoosting = true;
-                _characterMovementController.UpdateSpeed();
+                _characterMovementController.UpdateSpeedSpace();
             }
             if (Input.GetKeyUp(KeyCode.Space))
             {
                 _characterMovementController._isSpaceBoosting = false;
-                _characterMovementController.UpdateSpeed();
+                _characterMovementController.UpdateSpeedSpace();
             }
         }
         

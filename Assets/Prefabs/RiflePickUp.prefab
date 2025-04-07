@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4764fbdc448d4b53ab77e377db7d250f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weaponPrefab: {fileID: 7465771941272325492, guid: 166fd47c3ad08384fa91f2d570bbfb3c, type: 3}
+  _weaponPrefab: {fileID: 4671888571478572241, guid: 166fd47c3ad08384fa91f2d570bbfb3c, type: 3}
 --- !u!65 &3233721050167109048
 BoxCollider:
   m_ObjectHideFlags: 0

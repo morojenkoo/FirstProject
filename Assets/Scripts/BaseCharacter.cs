@@ -8,15 +8,14 @@ namespace FirstProject {
     public abstract class BaseCharacter : MonoBehaviour
     {
         [SerializeField]
-        private Weapon _baseWeaponPrefab;
+        public Weapon _baseWeaponPrefab;
         [SerializeField]
         private Transform _hand;
         [SerializeField]
         private float _health = 100f;
-        [SerializeField] private float _runAwayHealth = 30f;
         private IMovementDirectionSource _movementDirectionSource;
         public CharacterMovementController _characterMovementController;
-        private ShootingController _shootingController;
+        public ShootingController _shootingController;
         protected void Awake()
         {
             _movementDirectionSource = GetComponent<IMovementDirectionSource>();
@@ -61,10 +60,7 @@ namespace FirstProject {
         {
             return _health;
         }
-        public float GetRunAwayHealth()
-        {
-            return _runAwayHealth;
-        }
+        
         public void SetWeapon(Weapon weapon)
         {
             _shootingController.SetWeapon(weapon, _hand);

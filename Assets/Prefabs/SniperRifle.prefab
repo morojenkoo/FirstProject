@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6272188987013982461}
-  - component: {fileID: 6958037002435089774}
+  - component: {fileID: 2506118373304136574}
   m_Layer: 0
   m_Name: SniperRifle
   m_TagString: Untagged
@@ -34,7 +34,7 @@ Transform:
   - {fileID: 7565852063691332890}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6958037002435089774
+--- !u!114 &2506118373304136574
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -53,6 +53,7 @@ MonoBehaviour:
   _bulletFlySpeed: 50
   _bulletSpawnPosition: {fileID: 7565852063691332890}
   _damage: 50
+  _weaponType: SniperRifle
 --- !u!1 &5687370208442439504
 GameObject:
   m_ObjectHideFlags: 0

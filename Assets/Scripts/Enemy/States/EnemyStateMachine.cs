@@ -9,12 +9,10 @@ namespace FirstProject.States
         public EnemyStateMachine(EnemyTarget target, NavMesher navMesher, EnemyDirectionController enemyDirectionController,
             EnemyCharacter character)
         {
-            
             var idleState = new IdleState();
             var findWayState = new FindWayState(target, navMesher, enemyDirectionController);
             var moveForwardState = new MoveForwardState(target, enemyDirectionController);
-            var runAwayState = new RunAwayState(target, navMesher, enemyDirectionController);
-            //int randomNumber = Random.Range(1, 11);
+            var runAwayState = new RunAwayState(target, enemyDirectionController);
             SetInitialState(idleState);
             AddState(state: idleState, transitions: new List<Transition>
                 {
@@ -26,9 +24,7 @@ namespace FirstProject.States
                         () => target.DistanceToClosestFromAgent() <= NavMeshTurnOffDistance),
                     new Transition(
                         runAwayState,
-                        () => character.GetHealth() <= character.GetRunAwayHealth()),
-
-                    //    () => character.GetHealth() <= character.GetRunAwayHealth() && randomNumber > 3),
+                        () => character.GetHealth() <= character.GetRunAwayHealth() && Random.Range(1, 11) > 3)
                 }
             );
             AddState(state: findWayState, transitions: new List<Transition>
@@ -51,9 +47,7 @@ namespace FirstProject.States
                         () => target.DistanceToClosestFromAgent() > NavMeshTurnOffDistance),
                     new Transition(
                         runAwayState,
-                        () => character.GetHealth() <= character.GetRunAwayHealth()),
-
-                        //() => character.GetHealth() <= character.GetRunAwayHealth() && randomNumber > 3),
+                        () => character.GetHealth() <= character.GetRunAwayHealth() && Random.Range(1, 11) > 3)
                 }
             );
             AddState(state: runAwayState, transitions: new List<Transition>

@@ -6,7 +6,7 @@ namespace FirstProject.Shooting
     {
         public bool HasTarget => _target != null;
         public Vector3 TargetPosition => _target.transform.position;
-        private Weapon _weapon;
+        public Weapon _weapon;
         private float _nextShotTimerSec;
         private GameObject _target;
         private Collider[] _colliders = new Collider[2];

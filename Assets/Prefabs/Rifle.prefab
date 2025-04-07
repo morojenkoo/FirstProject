@@ -95,7 +95,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6153117360167492766}
-  - component: {fileID: 7465771941272325492}
+  - component: {fileID: 4671888571478572241}
   m_Layer: 0
   m_Name: Rifle
   m_TagString: Untagged
@@ -120,7 +120,7 @@ Transform:
   - {fileID: 7167319651477442361}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7465771941272325492
+--- !u!114 &4671888571478572241
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,6 +139,7 @@ MonoBehaviour:
   _bulletFlySpeed: 50
   _bulletSpawnPosition: {fileID: 7167319651477442361}
   _damage: 2
+  _weaponType: Rifle
 --- !u!1 &8673235807806040715
 GameObject:
   m_ObjectHideFlags: 0

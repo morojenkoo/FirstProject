@@ -9,8 +9,10 @@ namespace FirstProject
         private readonly Transform _agentTransform;
         private readonly Collider[] _colliders = new Collider[10];
         private readonly float _viewRadius;
-        public EnemyTarget(Transform agent, PlayerCharacter player, float viewRadius)
+        private readonly EnemyCharacter _character;
+        public EnemyTarget(Transform agent, PlayerCharacter player, float viewRadius, EnemyCharacter character)
         {
+            _character = character;
             _agentTransform = agent;
             _player = player;
             _viewRadius = viewRadius;
@@ -18,9 +20,12 @@ namespace FirstProject
 
         public void FindClosest()
         {
+            int count;
             float minDistance = float.MaxValue;
-            var count = FindAllTargets(LayerUtils.PickUpsMask | LayerUtils.EnemyMask);
-            //count+= FindAllTargets(LayerUtils.PickUpsMask | LayerUtils.PlayerMask);
+            if (_character._shootingController._weapon._weaponType == "Pistol")
+                count = FindAllTargets(LayerUtils.PickUpsMask | LayerUtils.EnemyMask);
+            else
+                count = FindAllTargets(LayerUtils.EnemyMask);
             for (int i = 0; i < count; i++)
             {
                 var go = _colliders[i].gameObject;

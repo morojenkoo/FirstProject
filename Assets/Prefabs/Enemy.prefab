@@ -262,6 +262,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _viewRadius: 20
   _character: {fileID: 4263903356054139092}
+  _runAwayAcceleration: 1.5
 --- !u!114 &4263903356054139092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,11 +275,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26e8d40e88824d8a98ffe0e026558840, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseWeaponPrefab: {fileID: 1204885222005326228, guid: c355507fa2cb2ab49b10db01b95efce6, type: 3}
+  _baseWeaponPrefab: {fileID: 9136014190820718556, guid: c355507fa2cb2ab49b10db01b95efce6, type: 3}
   _hand: {fileID: 6992888308854483795}
   _health: 100
-  _runAwayHealth: 30
   _characterMovementController: {fileID: 0}
+  _shootingController: {fileID: 0}
+  _runAwayHealth: 30
 --- !u!1 &7385679584501529343
 GameObject:
   m_ObjectHideFlags: 0

@@ -54,28 +54,29 @@ namespace FirstProject.Movement
 				StopCoroutine(_speedBoostCoroutine);
 			}
 			_isBonusBoosting = true;
-			UpdateSpeed();
+			UpdateSpeedPickUp(acceleration);
             
-			_speedBoostCoroutine = StartCoroutine(SpeedBoostTimer(duration));
+			_speedBoostCoroutine = StartCoroutine(SpeedBoostTimer(acceleration, duration));
 		}
-		private IEnumerator SpeedBoostTimer(float duration)
+		private IEnumerator SpeedBoostTimer(float acceleration, float duration)
 		{
 			yield return new WaitForSeconds(duration);
 			_isBonusBoosting = false;
-			UpdateSpeed();
+			UpdateSpeedPickUp(acceleration);
 		}
-		public void UpdateSpeed()
+
+		public void UpdateSpeedPickUp(float acceleration)
 		{
 			float targetSpeed = DefaultSpeed;
-			if (_isSpaceBoosting)
-			{
-				targetSpeed *= _acceleration;
-			}
 			if (_isBonusBoosting)
-			{
-				targetSpeed *= _acceleration;
-			}
-			targetSpeed = Mathf.Min(targetSpeed, MaxSpeed);
+				targetSpeed = Mathf.Min(targetSpeed * acceleration, MaxSpeed);
+			CurrentSpeed = targetSpeed;
+		}
+		public void UpdateSpeedSpace()
+		{
+			float targetSpeed = DefaultSpeed;
+			if (_isSpaceBoosting || _isBonusBoosting)
+				targetSpeed = Mathf.Min(targetSpeed * _acceleration, MaxSpeed);
 			CurrentSpeed = targetSpeed;
 		}
 	}
