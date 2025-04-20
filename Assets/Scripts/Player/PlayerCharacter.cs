@@ -6,7 +6,7 @@ namespace FirstProject
     [RequireComponent(typeof(PlayerMovementDirectionController))]
     public class PlayerCharacter : BaseCharacter
     {
-        
+        public static bool isPlayerAlive = false;
         private Coroutine _speedBoostCoroutine;
         
         protected override void Update()
@@ -23,7 +23,11 @@ namespace FirstProject
                 _characterMovementController.UpdateSpeedSpace();
             }
         }
-        
-        
+
+        public override void Death()
+        {
+            base.Death();
+            isPlayerAlive = false;
+        }
     }
 }

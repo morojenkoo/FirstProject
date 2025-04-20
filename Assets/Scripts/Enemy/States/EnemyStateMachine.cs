@@ -21,7 +21,7 @@ namespace FirstProject.States
                         () => target.DistanceToClosestFromAgent() > NavMeshTurnOffDistance), 
                     new Transition(
                         moveForwardState,
-                        () => target.DistanceToClosestFromAgent() <= NavMeshTurnOffDistance),
+                        () => target.DistanceToClosestFromAgent() <= NavMeshTurnOffDistance && target.Closest),
                     new Transition(
                         runAwayState,
                         () => character.GetHealth() <= character.GetRunAwayHealth() && Random.Range(1, 11) > 3)

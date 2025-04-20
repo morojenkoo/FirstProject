@@ -38,7 +38,7 @@ namespace FirstProject {
             _characterMovementController.MovementDirection = direction;
             _characterMovementController.LookDirection = lookDirection;
             if (_health <= 0f)
-                Destroy(gameObject);
+                Death();
         }
 
         protected void OnTriggerEnter(Collider other)
@@ -55,7 +55,11 @@ namespace FirstProject {
                 Destroy(other.gameObject);
             }
         }
-        
+
+        public virtual void Death()
+        {
+            Destroy(gameObject);
+        }
         public float GetHealth()
         {
             return _health;
