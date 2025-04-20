@@ -1,46 +1,33 @@
 using FirstProject.Movement;
 using UnityEngine;
-using System.Collections;
 
 namespace FirstProject 
 {
     [RequireComponent(typeof(PlayerMovementDirectionController))]
     public class PlayerCharacter : BaseCharacter
     {
-        [SerializeField]
-        private int _acceleration = 2;
+        public static bool isPlayerAlive = false;
         private Coroutine _speedBoostCoroutine;
         
         protected override void Update()
         {
             base.Update();
             if (Input.GetKeyDown(KeyCode.Space))
-                SpeedUp(true);
-            if (Input.GetKeyUp(KeyCode.Space))
-                SpeedUp(false);
-        }
-        public void ActivateTemporarySpeedBoost(float acceleration, float duration) //Метод для ускорения с таймером
-        {
-            if (_speedBoostCoroutine != null)
             {
-                StopCoroutine(_speedBoostCoroutine);
+                _characterMovementController._isSpaceBoosting = true;
+                _characterMovementController.UpdateSpeedSpace();
             }
-            _characterMovementController.CurrentSpeed *= acceleration;
-            _speedBoostCoroutine = StartCoroutine(SpeedBoostTimer(duration));
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                _characterMovementController._isSpaceBoosting = false;
+                _characterMovementController.UpdateSpeedSpace();
+            }
         }
 
-        private IEnumerator SpeedBoostTimer(float duration) //Таймер ускорения
+        public override void Death()
         {
-            yield return new WaitForSeconds(duration);
-            _characterMovementController.CurrentSpeed = _characterMovementController.DefaultSpeed;
-        }
-
-        private void SpeedUp(bool isBoosting)
-        {
-            if (isBoosting)
-                _characterMovementController.CurrentSpeed *= _acceleration;
-            else
-                _characterMovementController.CurrentSpeed = _characterMovementController.DefaultSpeed;
+            base.Death();
+            isPlayerAlive = false;
         }
     }
 }

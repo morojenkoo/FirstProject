@@ -6,7 +6,7 @@ namespace FirstProject.PickUp
 {
     public class PickUpWeapon : PickUpItem
     {
-        [SerializeField] 
+        [SerializeField]
         private Weapon _weaponPrefab;
         public override void PickUp(BaseCharacter character)
         {
@@ -14,5 +14,4 @@ namespace FirstProject.PickUp
             character.SetWeapon(_weaponPrefab);
         }
     }
-    
 }

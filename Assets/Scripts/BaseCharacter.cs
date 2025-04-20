@@ -1,20 +1,21 @@
 using FirstProject.Movement;
 using FirstProject.PickUp;
 using FirstProject.Shooting;
+
 using UnityEngine;
 namespace FirstProject {
     [RequireComponent(typeof(CharacterMovementController), typeof(ShootingController))]
     public abstract class BaseCharacter : MonoBehaviour
     {
         [SerializeField]
-        private Weapon _baseWeaponPrefab;
+        public Weapon _baseWeaponPrefab;
         [SerializeField]
         private Transform _hand;
         [SerializeField]
-        private float _health = 2f;
+        private float _health = 100f;
         private IMovementDirectionSource _movementDirectionSource;
         public CharacterMovementController _characterMovementController;
-        private ShootingController _shootingController;
+        public ShootingController _shootingController;
         protected void Awake()
         {
             _movementDirectionSource = GetComponent<IMovementDirectionSource>();
@@ -37,7 +38,7 @@ namespace FirstProject {
             _characterMovementController.MovementDirection = direction;
             _characterMovementController.LookDirection = lookDirection;
             if (_health <= 0f)
-                Destroy(gameObject);
+                Death();
         }
 
         protected void OnTriggerEnter(Collider other)
@@ -55,6 +56,15 @@ namespace FirstProject {
             }
         }
 
+        public virtual void Death()
+        {
+            Destroy(gameObject);
+        }
+        public float GetHealth()
+        {
+            return _health;
+        }
+        
         public void SetWeapon(Weapon weapon)
         {
             _shootingController.SetWeapon(weapon, _hand);

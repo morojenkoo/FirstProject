@@ -126,7 +126,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2323368473236599675}
-  - component: {fileID: 1204885222005326228}
+  - component: {fileID: 9136014190820718556}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
@@ -151,7 +151,7 @@ Transform:
   - {fileID: 5864728989326889322}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1204885222005326228
+--- !u!114 &9136014190820718556
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -170,3 +170,4 @@ MonoBehaviour:
   _bulletFlySpeed: 50
   _bulletSpawnPosition: {fileID: 5864728989326889322}
   _damage: 5
+  _weaponType: Pistol

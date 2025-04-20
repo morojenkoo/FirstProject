@@ -1,0 +1,62 @@
+﻿using System;
+using Unity.VisualScripting;
+using UnityEngine;
+
+namespace FirstProject
+{
+    public class CharacterSpawner : MonoBehaviour
+    {
+        [SerializeField] private PlayerCharacter _playerPrefab;
+        [SerializeField] private EnemyCharacter _enemyPrefab;
+        [SerializeField] private int _maxEnemyCount = 5;
+        public BaseCharacter CurrentCharacter { get; private set; }
+        public event Action<GameObject> OnCharacterSpawned;
+        private float _currentSpawnTimerSeconds;
+        private const float _spawnInterval = 5;
+        private void Awake()
+        {
+            SpawnEnemy();
+            SpawnPlayer();
+        }
+
+        private void Update()
+        {
+            if (CurrentCharacter is PlayerCharacter)
+                SpawnPlayer();
+            
+            if (EnemyCharacter.currentEnemyCount < _maxEnemyCount)
+            {
+                _currentSpawnTimerSeconds += Time.deltaTime;
+                if (_currentSpawnTimerSeconds > _spawnInterval)
+                {
+                    _currentSpawnTimerSeconds = 0f;
+                    SpawnEnemy();
+                }
+            }
+        }
+
+        public void SpawnPlayer()
+        {
+            if (PlayerCharacter.isPlayerAlive)
+                return;
+            var spawnPosition = new Vector3(0, 1, 0) + transform.position;
+            CurrentCharacter = Instantiate(_playerPrefab, spawnPosition, Quaternion.identity);
+            PlayerCharacter.isPlayerAlive = true;
+            OnCharacterSpawned?.Invoke(CurrentCharacter.GameObject());
+        }
+
+        public void SpawnEnemy()
+        {
+            var spawnPosition = new Vector3(0, 1, 0) + transform.position;
+            CurrentCharacter = Instantiate(_enemyPrefab, spawnPosition + transform.position, Quaternion.identity);
+            EnemyCharacter.currentEnemyCount++;
+       }
+        private void OnDrawGizmos()
+        {
+            var cashedColor = UnityEditor.Handles.color;
+            UnityEditor.Handles.color = Color.green;
+            UnityEditor.Handles.DrawWireDisc(transform.position, Vector3.up, 2f);
+            UnityEditor.Handles.color = cashedColor;
+        }
+    }
+}

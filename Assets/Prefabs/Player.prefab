@@ -259,8 +259,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba043109db7d6fb4f99935c765ac10d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
+  CurrentSpeed: 5
   _maxRadians: 10
+  _acceleration: 2
+  DefaultSpeed: 5
+  MaxSpeed: 10
+  _isSpaceBoosting: 0
+  _isBonusBoosting: 0
 --- !u!114 &3951904925021163565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,6 +290,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33e6dc995cac24a4691da3a1762515fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseWeaponPrefab: {fileID: 1204885222005326228, guid: c355507fa2cb2ab49b10db01b95efce6, type: 3}
+  _baseWeaponPrefab: {fileID: 9136014190820718556, guid: c355507fa2cb2ab49b10db01b95efce6, type: 3}
   _hand: {fileID: 6032920432740707245}
-  _health: 2
+  _health: 100
+  _characterMovementController: {fileID: 0}
+  _shootingController: {fileID: 0}

@@ -6,7 +6,7 @@ namespace FirstProject.Shooting
     {
         public bool HasTarget => _target != null;
         public Vector3 TargetPosition => _target.transform.position;
-        private Weapon _weapon;
+        public Weapon _weapon;
         private float _nextShotTimerSec;
         private GameObject _target;
         private Collider[] _colliders = new Collider[2];
@@ -36,8 +36,6 @@ namespace FirstProject.Shooting
             GameObject target = null;
             var position = _weapon.transform.position;
             var radius = _weapon.ShootRadius;
-            var EnemyMask = LayerUtils.EnemyMask;
-            var PlayerMask = LayerUtils.PlayerMask;
             var combinedMask = LayerUtils.EnemyMask | LayerUtils.PlayerMask; //побитовое или для объединения масок
             var size = Physics.OverlapSphereNonAlloc(position, radius, _colliders, combinedMask); //в функцию передаём объединённую маску
             if (size > 0)
