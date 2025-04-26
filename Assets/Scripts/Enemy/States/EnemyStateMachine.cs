@@ -6,6 +6,8 @@ namespace FirstProject.States
     public class EnemyStateMachine: BaseStateMachine
     {
         private const float NavMeshTurnOffDistance = 5f;
+        [SerializeField] 
+        private float _randomValue = 0.3f;
         public EnemyStateMachine(EnemyTarget target, NavMesher navMesher, EnemyDirectionController enemyDirectionController,
             EnemyCharacter character)
         {
@@ -24,7 +26,7 @@ namespace FirstProject.States
                         () => target.DistanceToClosestFromAgent() <= NavMeshTurnOffDistance && target.Closest),
                     new Transition(
                         runAwayState,
-                        () => character.GetHealth() <= character.GetRunAwayHealth() && Random.Range(1, 11) > 3)
+                        () => character.GetHealth() <= character.GetRunAwayHealth() && Random.value * Time.deltaTime < _randomValue)
                 }
             );
             AddState(state: findWayState, transitions: new List<Transition>
@@ -47,7 +49,7 @@ namespace FirstProject.States
                         () => target.DistanceToClosestFromAgent() > NavMeshTurnOffDistance),
                     new Transition(
                         runAwayState,
-                        () => character.GetHealth() <= character.GetRunAwayHealth() && Random.Range(1, 11) > 3)
+                        () => character.GetHealth() <= character.GetRunAwayHealth() && Random.value * Time.deltaTime < _randomValue)
                 }
             );
             AddState(state: runAwayState, transitions: new List<Transition>

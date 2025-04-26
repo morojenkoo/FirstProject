@@ -8,7 +8,7 @@ namespace FirstProject {
         [SerializeField] 
         private float _runAwayHealth = 30f;
 
-        public static int currentEnemyCount = 0;
+        public static int СurrentEnemyCount = 0;
         public float GetRunAwayHealth()
         {
             return _runAwayHealth;
@@ -17,7 +17,7 @@ namespace FirstProject {
         public override void Death()
         {
             base.Death();
-            currentEnemyCount--;
+            СurrentEnemyCount--;
         }
     }
 }

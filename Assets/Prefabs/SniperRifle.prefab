@@ -53,7 +53,7 @@ MonoBehaviour:
   _bulletFlySpeed: 50
   _bulletSpawnPosition: {fileID: 7565852063691332890}
   _damage: 50
-  _weaponType: SniperRifle
+  _weaponType: 2
 --- !u!1 &5687370208442439504
 GameObject:
   m_ObjectHideFlags: 0

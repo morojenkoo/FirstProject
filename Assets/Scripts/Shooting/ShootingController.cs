@@ -6,7 +6,7 @@ namespace FirstProject.Shooting
     {
         public bool HasTarget => _target != null;
         public Vector3 TargetPosition => _target.transform.position;
-        public Weapon _weapon;
+        public Weapon Weapon;
         private float _nextShotTimerSec;
         private GameObject _target;
         private Collider[] _colliders = new Collider[2];
@@ -17,25 +17,25 @@ namespace FirstProject.Shooting
             if (_nextShotTimerSec < 0)
             {
                 if (HasTarget)
-                    _weapon.Shoot(TargetPosition);
-                _nextShotTimerSec = _weapon.ShootFrequencySec;
+                    Weapon.Shoot(TargetPosition);
+                _nextShotTimerSec = Weapon.ShootFrequencySec;
             }
         }
 
         public void SetWeapon(Weapon weaponPrefab, Transform hand)
         {
-            if (_weapon != null)
-                Destroy(_weapon.gameObject);
-            _weapon = Instantiate(weaponPrefab, hand);
-            _weapon.transform.localPosition = Vector3.zero;
-            _weapon.transform.localRotation = Quaternion.identity;
+            if (Weapon != null)
+                Destroy(Weapon.gameObject);
+            Weapon = Instantiate(weaponPrefab, hand);
+            Weapon.transform.localPosition = Vector3.zero;
+            Weapon.transform.localRotation = Quaternion.identity;
         }
 
         private GameObject GetTarget()
         {
             GameObject target = null;
-            var position = _weapon.transform.position;
-            var radius = _weapon.ShootRadius;
+            var position = Weapon.transform.position;
+            var radius = Weapon.ShootRadius;
             var combinedMask = LayerUtils.EnemyMask | LayerUtils.PlayerMask; //побитовое или для объединения масок
             var size = Physics.OverlapSphereNonAlloc(position, radius, _colliders, combinedMask); //в функцию передаём объединённую маску
             if (size > 0)

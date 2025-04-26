@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using FirstProject.Shooting;
+using UnityEngine;
 
 namespace FirstProject
 {
@@ -22,7 +23,7 @@ namespace FirstProject
         {
             int count;
             float minDistance = float.MaxValue;
-            if (_character._shootingController._weapon._weaponType == "Pistol")
+            if (_character._shootingController.Weapon._weaponType == Weapon.WeaponType.Pistol)
                 count = FindAllTargets(LayerUtils.PickUpsMask | LayerUtils.EnemyMask);
             else
                 count = FindAllTargets(LayerUtils.EnemyMask);
@@ -54,6 +55,6 @@ namespace FirstProject
                 _agentTransform.position, _viewRadius, _colliders, LayerMask);
             return size;
         }
-        private float DistanceFromAgentTo(GameObject go) => (_agentTransform.position - go.transform.position).magnitude;
+        private float DistanceFromAgentTo(GameObject go) => (_agentTransform.position - go.transform.position).sqrMagnitude;
     }
 }

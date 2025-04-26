@@ -24,7 +24,7 @@ namespace FirstProject
             if (CurrentCharacter is PlayerCharacter)
                 SpawnPlayer();
             
-            if (EnemyCharacter.currentEnemyCount < _maxEnemyCount)
+            if (EnemyCharacter.СurrentEnemyCount < _maxEnemyCount)
             {
                 _currentSpawnTimerSeconds += Time.deltaTime;
                 if (_currentSpawnTimerSeconds > _spawnInterval)
@@ -37,19 +37,19 @@ namespace FirstProject
 
         public void SpawnPlayer()
         {
-            if (PlayerCharacter.isPlayerAlive)
+            if (PlayerCharacter.IsPlayerAlive)
                 return;
             var spawnPosition = new Vector3(0, 1, 0) + transform.position;
             CurrentCharacter = Instantiate(_playerPrefab, spawnPosition, Quaternion.identity);
-            PlayerCharacter.isPlayerAlive = true;
+            PlayerCharacter.IsPlayerAlive = true;
             OnCharacterSpawned?.Invoke(CurrentCharacter.GameObject());
         }
 
         public void SpawnEnemy()
         {
             var spawnPosition = new Vector3(0, 1, 0) + transform.position;
-            CurrentCharacter = Instantiate(_enemyPrefab, spawnPosition + transform.position, Quaternion.identity);
-            EnemyCharacter.currentEnemyCount++;
+            CurrentCharacter = Instantiate(_enemyPrefab, spawnPosition, Quaternion.identity);
+            EnemyCharacter.СurrentEnemyCount++;
        }
         private void OnDrawGizmos()
         {

@@ -7,7 +7,6 @@ namespace FirstProject.Movement
 	{
 		private static readonly float SqrEpsilon = Mathf.Epsilon * Mathf.Epsilon; 
 		private CharacterController _characterController;
-		[SerializeField]
 		public float CurrentSpeed = 5f;
 		[SerializeField]
 		private float _maxRadians = 10f;
@@ -16,8 +15,8 @@ namespace FirstProject.Movement
 		public float DefaultSpeed = 5f;
 		public float MaxSpeed = 10f;
 		private Coroutine _speedBoostCoroutine;
-		public bool _isSpaceBoosting;
-		public bool _isBonusBoosting;
+		public bool IsSpaceBoosting;
+		public bool IsBonusBoosting;
 		public Vector3 MovementDirection { get; set; }
 		public Vector3 LookDirection { get; set; }
 		protected void Awake()
@@ -53,7 +52,7 @@ namespace FirstProject.Movement
 			{
 				StopCoroutine(_speedBoostCoroutine);
 			}
-			_isBonusBoosting = true;
+			IsBonusBoosting = true;
 			UpdateSpeedPickUp(acceleration);
             
 			_speedBoostCoroutine = StartCoroutine(SpeedBoostTimer(acceleration, duration));
@@ -61,21 +60,21 @@ namespace FirstProject.Movement
 		private IEnumerator SpeedBoostTimer(float acceleration, float duration)
 		{
 			yield return new WaitForSeconds(duration);
-			_isBonusBoosting = false;
+			IsBonusBoosting = false;
 			UpdateSpeedPickUp(acceleration);
 		}
 
 		public void UpdateSpeedPickUp(float acceleration)
 		{
 			float targetSpeed = DefaultSpeed;
-			if (_isBonusBoosting)
+			if (IsBonusBoosting)
 				targetSpeed = Mathf.Min(targetSpeed * acceleration, MaxSpeed);
 			CurrentSpeed = targetSpeed;
 		}
 		public void UpdateSpeedSpace()
 		{
 			float targetSpeed = DefaultSpeed;
-			if (_isSpaceBoosting || _isBonusBoosting)
+			if (IsSpaceBoosting || IsBonusBoosting)
 				targetSpeed = Mathf.Min(targetSpeed * _acceleration, MaxSpeed);
 			CurrentSpeed = targetSpeed;
 		}
