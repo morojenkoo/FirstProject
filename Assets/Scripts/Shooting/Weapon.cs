@@ -17,8 +17,14 @@ namespace FirstProject.Shooting
         private Transform _bulletSpawnPosition;
         [SerializeField] 
         private float _damage = 1f;
-        [SerializeField] 
-        public string _weaponType;
+        public enum WeaponType
+        {
+            Pistol,
+            Rifle,
+            SniperRifle
+        }
+        [SerializeField]
+        public WeaponType _weaponType;
         public void Shoot(Vector3 targetPoint)
         {
             var bullet = Instantiate(BulletPrefab, _bulletSpawnPosition.position, Quaternion.identity);

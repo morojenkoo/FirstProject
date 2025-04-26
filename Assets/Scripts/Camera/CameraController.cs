@@ -17,7 +17,6 @@ namespace FirstProject.Camera
 		protected void Start()
 		{
 			_spawner.OnCharacterSpawned += HandleCharacterSpawned;
-            Debug.Log(_spawner.CurrentCharacter is PlayerCharacter);
 			if (_spawner.CurrentCharacter is PlayerCharacter)
 			{
 				HandleCharacterSpawned(_spawner.CurrentCharacter.GameObject());
