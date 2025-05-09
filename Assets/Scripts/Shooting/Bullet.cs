@@ -17,12 +17,12 @@ namespace FirstProject.Shooting
             _flySpeed = flySpeed;
             Damage = damage;
         }
-
         protected void Update()
         {
             var delta = _flySpeed * Time.deltaTime;
             _currentFlyDistance += delta;
             transform.Translate(_direction * delta);
+            
             if (_currentFlyDistance >= _maxFlyDistance)
             {
                 Destroy(gameObject);

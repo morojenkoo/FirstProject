@@ -8,20 +8,19 @@ namespace FirstProject
     {
         [SerializeField] private PlayerCharacter _playerPrefab;
         [SerializeField] private EnemyCharacter _enemyPrefab;
-        [SerializeField] private int _maxEnemyCount = 5;
+        private static int _maxEnemyCount = 2;
         public BaseCharacter CurrentCharacter { get; private set; }
         public event Action<GameObject> OnCharacterSpawned;
-        private float _currentSpawnTimerSeconds;
+        private static float _currentSpawnTimerSeconds;
         private const float _spawnInterval = 5;
         private void Awake()
         {
-            SpawnEnemy();
             SpawnPlayer();
         }
 
         private void Update()
         {
-            if (CurrentCharacter is PlayerCharacter)
+            if (!PlayerCharacter.IsPlayerAlive)
                 SpawnPlayer();
             
             if (EnemyCharacter.СurrentEnemyCount < _maxEnemyCount)
