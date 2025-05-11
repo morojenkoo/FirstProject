@@ -6,7 +6,7 @@ namespace FirstProject.Shooting
     {
         public bool HasTarget => _target != null;
         public Vector3 TargetPosition => _target.transform.position;
-        public Weapon Weapon;
+        private Weapon Weapon;
         private float _nextShotTimerSec;
         private GameObject _target;
         private Collider[] _colliders = new Collider[2];
@@ -29,6 +29,11 @@ namespace FirstProject.Shooting
             Weapon = Instantiate(weaponPrefab, hand);
             Weapon.transform.localPosition = Vector3.zero;
             Weapon.transform.localRotation = Quaternion.identity;
+        }
+
+        public Weapon.WeaponType GetWeaponType()
+        {
+            return Weapon._weaponType;
         }
 
         private GameObject GetTarget()

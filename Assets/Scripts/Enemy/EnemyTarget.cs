@@ -23,7 +23,7 @@ namespace FirstProject
         {
             int count;
             float minDistance = float.MaxValue;
-            if (_character._shootingController.Weapon._weaponType == Weapon.WeaponType.Pistol)
+            if (_character._shootingController.GetWeaponType() == Weapon.WeaponType.Pistol)
                 count = FindAllTargets(LayerUtils.PickUpsMask | LayerUtils.EnemyMask);
             else
                 count = FindAllTargets(LayerUtils.EnemyMask);

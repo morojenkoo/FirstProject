@@ -8,11 +8,13 @@ namespace FirstProject {
     public abstract class BaseCharacter : MonoBehaviour
     {
         [SerializeField]
-        public Weapon _baseWeaponPrefab;
+        private Weapon _baseWeaponPrefab;
         [SerializeField]
         private Transform _hand;
         [SerializeField]
         private float _health = 100f;
+        [SerializeField]
+        private Animator _animator;
         private IMovementDirectionSource _movementDirectionSource;
         public CharacterMovementController _characterMovementController;
         public ShootingController _shootingController;
@@ -37,6 +39,8 @@ namespace FirstProject {
             }
             _characterMovementController.MovementDirection = direction;
             _characterMovementController.LookDirection = lookDirection;
+            _animator.SetBool("IsMoving", direction != Vector3.zero);
+            _animator.SetBool("IsShooting", _shootingController.HasTarget);
             if (_health <= 0f)
                 Death();
         }

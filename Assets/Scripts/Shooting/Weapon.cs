@@ -23,7 +23,7 @@ namespace FirstProject.Shooting
             Rifle,
             SniperRifle
         }
-        [SerializeField]
+        //[SerializeField]
         public WeaponType _weaponType;
         public void Shoot(Vector3 targetPoint)
         {
