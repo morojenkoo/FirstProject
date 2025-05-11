@@ -1,3 +1,4 @@
+using System.Collections;
 using FirstProject.Movement;
 using FirstProject.PickUp;
 using FirstProject.Shooting;
@@ -62,6 +63,14 @@ namespace FirstProject {
 
         public virtual void Death()
         {
+            StartCoroutine(DeathCoroutine());
+        }
+        public virtual IEnumerator DeathCoroutine()
+        {   
+            _animator.SetTrigger("IsDead");
+            AnimatorStateInfo stateInfo = _animator.GetCurrentAnimatorStateInfo(0);
+            float deathAnimationLength = stateInfo.length;
+            yield return new WaitForSeconds(deathAnimationLength);
             Destroy(gameObject);
         }
         public float GetHealth()
