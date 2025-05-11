@@ -1,3 +1,4 @@
+using System.Collections;
 using FirstProject.Movement;
 using UnityEngine;
 
@@ -27,6 +28,13 @@ namespace FirstProject
         public override void Death()
         {
             base.Death();
+            StartCoroutine(DeathCoroutineWithSpawnDelay());
+            
+        }
+
+        private IEnumerator DeathCoroutineWithSpawnDelay()
+        {
+            yield return StartCoroutine(base.DeathCoroutine());
             IsPlayerAlive = false;
         }
     }

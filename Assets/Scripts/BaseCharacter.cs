@@ -1,3 +1,4 @@
+using System.Collections;
 using FirstProject.Movement;
 using FirstProject.PickUp;
 using FirstProject.Shooting;
@@ -8,11 +9,13 @@ namespace FirstProject {
     public abstract class BaseCharacter : MonoBehaviour
     {
         [SerializeField]
-        public Weapon _baseWeaponPrefab;
+        private Weapon _baseWeaponPrefab;
         [SerializeField]
         private Transform _hand;
         [SerializeField]
         private float _health = 100f;
+        [SerializeField]
+        private Animator _animator;
         private IMovementDirectionSource _movementDirectionSource;
         public CharacterMovementController _characterMovementController;
         public ShootingController _shootingController;
@@ -37,6 +40,8 @@ namespace FirstProject {
             }
             _characterMovementController.MovementDirection = direction;
             _characterMovementController.LookDirection = lookDirection;
+            _animator.SetBool("IsMoving", direction != Vector3.zero);
+            _animator.SetBool("IsShooting", _shootingController.HasTarget);
             if (_health <= 0f)
                 Death();
         }
@@ -58,6 +63,14 @@ namespace FirstProject {
 
         public virtual void Death()
         {
+            StartCoroutine(DeathCoroutine());
+        }
+        public virtual IEnumerator DeathCoroutine()
+        {   
+            _animator.SetTrigger("IsDead");
+            AnimatorStateInfo stateInfo = _animator.GetCurrentAnimatorStateInfo(0);
+            float deathAnimationLength = stateInfo.length;
+            yield return new WaitForSeconds(deathAnimationLength);
             Destroy(gameObject);
         }
         public float GetHealth()
