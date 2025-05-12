@@ -16,7 +16,12 @@ namespace FirstProject.States
         }
         public override void Execute()
         {
-            Vector3 targetPosition = -_target.Closest.transform.position;
+            Vector3 targetPosition = Vector3.zero;
+            if (_target.Closest != null)
+            {
+                targetPosition = -_target.Closest.transform.position;
+            }
+
             if (_currentPoint != targetPosition)
             {
                 _currentPoint = targetPosition;

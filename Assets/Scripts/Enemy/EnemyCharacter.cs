@@ -1,3 +1,4 @@
+using System.Collections;
 using FirstProject.Enemy;
 using FirstProject.States;
 using UnityEngine;
@@ -17,6 +18,13 @@ namespace FirstProject {
         public override void Death()
         {
             base.Death();
+            StartCoroutine(DeathCoroutineWithSpawnDelay());
+            
+        }
+
+        private IEnumerator DeathCoroutineWithSpawnDelay()
+        {
+            yield return StartCoroutine(base.DeathCoroutine());
             СurrentEnemyCount--;
         }
     }
